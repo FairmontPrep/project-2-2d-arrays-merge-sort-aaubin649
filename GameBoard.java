@@ -22,9 +22,9 @@ public class GameBoard extends JFrame {
         // your 2D array must be a minimum of 6 rows x 2 columns
         // you may add a row for every image if you'd like to have every square be a different color/image
 
-        piecesArray = new String[1][2];
-        piecesArray[0][0]= "temp2.png";
-        piecesArray[0][1]= "HP:200";
+        piecesArray = new String[8][8];
+        piecesArray[0][0]= "pawn comp sci.png";
+        
 
         //print the contents of your 2D array
         //this is a requirement to show your 2D array is not sorted at the beginning of your program
@@ -63,14 +63,108 @@ public class GameBoard extends JFrame {
                 // you will use a loop to add to your 2D Array, below is an example of how to add ONE image to ONE square
                 
                 // Adding an image to specific positions (e.g., first row)
-                if (row == 0 && col==0) {
+                if (row == 1 && col==0) {
                     Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                     JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
                     JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
                     squares[row][col].add(pieceLabel, BorderLayout.CENTER);
                     squares[row][col].add(textLabel, BorderLayout.SOUTH);
                 }
-
+                if (row == 1 && col==1) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 1 && col==2) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 1 && col==3) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 1 && col==4) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 1 && col==5) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 1 && col==6) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 1 && col==7) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }
+                if (row == 6 && col==0) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 6 && col==1) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }
+                if (row == 6 && col==2) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 6 && col==3) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 6 && col==4) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 6 && col==5) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 6 && col==6) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }if (row == 6 && col==7) {
+                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
+                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
+                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                }
+                
+                
                 
                 add(squares[row][col]);
             }
