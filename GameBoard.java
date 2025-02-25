@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.Arrays;
 
 public class GameBoard extends JFrame {
     private static final int SIZE = 8;
     private JPanel[][] squares = new JPanel[SIZE][SIZE];
-    private ImageIcon exampleIcon;
-    public String[][] piecesArray;
 
+    public String[][] piecesArray;
 
     public GameBoard() {
         setTitle("Chess Board");
@@ -14,167 +14,88 @@ public class GameBoard extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(SIZE, SIZE));
 
-       
+        // Initialize the piecesArray to store image and position information
+        piecesArray = new String[32][2]; // Each row: [imagePath, position]
+        loadPieces(); // Load the pieces with their corresponding images
 
-        // create your 2d Array to store your image variables and assign positions
-        // add your code here
-        // this line of code initializes a new 2D Array of Strings the size of 1 row and 2 columns
-        // your 2D array must be a minimum of 6 rows x 2 columns
-        // you may add a row for every image if you'd like to have every square be a different color/image
-
-        piecesArray = new String[8][8];
-        piecesArray[0][0]= "pawn comp sci.png";
-        
-
-        //print the contents of your 2D array
-        //this is a requirement to show your 2D array is not sorted at the beginning of your program
-
+        // Print the contents of the 2D array to check if it is unsorted initially
+        System.out.println("Unsorted piecesArray:");
         for (int i = 0; i < piecesArray.length; i++) {
             for (int j = 0; j < piecesArray[i].length; j++) {
                 System.out.println("piecesArray[" + i + "][" + j + "] = " + piecesArray[i][j]);
             }
         }
 
-        exampleIcon = new ImageIcon(piecesArray[0][0]); // Load image file
-
         initializeBoard();
     }
 
     private void initializeBoard() {
+        // Sort the pieces array before placing pieces on the board
+        sortPieces();
+    
         for (int row = 0; row < SIZE; row++) {
             for (int col = 0; col < SIZE; col++) {
                 squares[row][col] = new JPanel(new BorderLayout());
-
-                // creates the checkered pattern with the two colors
-                // you can add more colors or take away any you'd like
-                
-                if (row >= 2 && row <= 5) {
-                    squares[row][col].setBackground(new Color(139, 69, 19)); // brown
-                } else if ((row + col) % 2 == 0) {
-                    squares[row][col].setBackground(new Color(55, 255, 55)); //dark green
+    
+                // Creates the checkered pattern with two colors
+                if ((row + col) % 2 == 0) {
+                    squares[row][col].setBackground(new Color(100, 69, 100)); // Dark Brown
                 } else {
-                    squares[row][col].setBackground(new Color(200, 255, 200)); //lighter green
+                    squares[row][col].setBackground(new Color(255, 255, 255)); // White
                 }
+    
+                // Adding pieces to the board based on their position
+                for (int i = 0; i < piecesArray.length; i++) {
+                    int piecePosition = Integer.parseInt(piecesArray[i][1]);
+                    int pieceRow = (piecePosition - 1) / SIZE;
+                    int pieceCol = (piecePosition - 1) % SIZE;
+    
+                    if (row == pieceRow && col == pieceCol) {
+                        ImageIcon pieceIcon = new ImageIcon(piecesArray[i][0]); // Load the image from the array
+                        Image scaledImage = pieceIcon.getImage().getScaledInstance(70, 80, Image.SCALE_SMOOTH); // Width height chess pieces
+                        JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
 
-
-                // this is where your sorting method will be called 
-                // you will use the column 2 values to arrange your images to the board
-                // be sure to sort them before you add them onto the board 
-                // you will use a loop to add to your 2D Array, below is an example of how to add ONE image to ONE square
-                
-                // Adding an image to specific positions (e.g., first row)
-                if (row == 1 && col==0) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
+                        squares[row][col].add(pieceLabel, BorderLayout.CENTER);
+                    }
                 }
-                if (row == 1 && col==1) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 1 && col==2) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 1 && col==3) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 1 && col==4) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 1 && col==5) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 1 && col==6) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 1 && col==7) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }
-                if (row == 6 && col==0) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 6 && col==1) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }
-                if (row == 6 && col==2) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 6 && col==3) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 6 && col==4) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 6 && col==5) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 6 && col==6) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }if (row == 6 && col==7) {
-                    Image scaledImage = exampleIcon.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
-                    JLabel textLabel = new JLabel(piecesArray[0][1], SwingConstants.CENTER);
-                    squares[row][col].add(pieceLabel, BorderLayout.CENTER);
-                    squares[row][col].add(textLabel, BorderLayout.SOUTH);
-                }
-                
-                
-                
+    
                 add(squares[row][col]);
             }
         }
     }
-
-
-    // add your merge sort method here
-    // add a comment to every line of code that describes what the line is accomplishing
-    // your mergeSort method does not have to return any value
+    
+    private void loadPieces() {
+        // Load images for white pieces with corresponding position info
+        piecesArray[0] = new String[]{"W_Rook.png", "1"};
+        piecesArray[1] = new String[]{"W_Knight.png", "2"};
+        piecesArray[2] = new String[]{"W_Bishop.png", "3"};
+        piecesArray[3] = new String[]{"W_Queen.png", "4"};
+        piecesArray[4] = new String[]{"W_King.png", "5"};
+        piecesArray[5] = new String[]{"W_Bishop.png", "6"};
+        piecesArray[6] = new String[]{"W_Knight.png", "7"};
+        piecesArray[7] = new String[]{"W_Rook.png", "8"};
+        for (int i = 8; i < 16; i++) {
+            piecesArray[i] = new String[]{"W_Pawn.png", String.valueOf(i + 1)};
+        }
+    
+        // Load images for black pieces with corresponding position info
+        for (int i = 16; i < 24; i++) {
+            piecesArray[i] = new String[]{"B_Pawn.png", String.valueOf(i + 33)};
+        }
+        piecesArray[24] = new String[]{"B_Rook.png", "57"};
+        piecesArray[25] = new String[]{"B_Knight.png", "58"};
+        piecesArray[26] = new String[]{"B_Bishop.png", "59"};
+        piecesArray[27] = new String[]{"B_Queen.png", "60"};
+        piecesArray[28] = new String[]{"B_King.png", "61"};
+        piecesArray[29] = new String[]{"B_Bishop.png", "62"};
+        piecesArray[30] = new String[]{"B_Knight.png", "63"};
+        piecesArray[31] = new String[]{"B_Rook.png", "64"};
+    }
+    
+    private void sortPieces() {
+        // Sort the pieces array based on the position number (second column)
+        Arrays.sort(piecesArray, (a, b) -> Integer.compare(Integer.parseInt(a[1]), Integer.parseInt(b[1])));
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
@@ -183,3 +104,4 @@ public class GameBoard extends JFrame {
         });
     }
 }
+
