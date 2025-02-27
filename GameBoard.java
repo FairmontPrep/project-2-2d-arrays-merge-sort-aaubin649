@@ -41,7 +41,7 @@ public class GameBoard extends JFrame {
             int pieceRow = piecePosition / SIZE;
             int pieceCol = piecePosition % SIZE;
             ImageIcon pieceIcon = new ImageIcon(piece[0]);
-            Image scaledImage = pieceIcon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+            Image scaledImage = pieceIcon.getImage().getScaledInstance(70, 80, Image.SCALE_SMOOTH);
             JLabel pieceLabel = new JLabel(new ImageIcon(scaledImage));
             squares[pieceRow][pieceCol].add(pieceLabel, BorderLayout.CENTER);
         }
