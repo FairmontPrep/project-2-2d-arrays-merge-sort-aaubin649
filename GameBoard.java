@@ -22,6 +22,10 @@ public class GameBoard extends JFrame {
             {"B_Rook.png", "64"}, {"B_Knight.png", "63"}, {"B_Bishop.png", "62"}, {"B_Queen.png", "60"},
             {"B_King.png", "61"}, {"B_Bishop.png", "59"}, {"B_Knight.png", "58"}, {"B_Rook.png", "57"}
         };
+        System.out.println("unsorted");
+        for (String[] piece : piecesArray) {
+            System.out.println(piece[0] + " - " + piece[1]);
+        }
 
         mergeSort(piecesArray, 0, piecesArray.length - 1);
         initializeBoard();
